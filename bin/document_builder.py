@@ -3,6 +3,7 @@ from cloner_utils import *
 from urllib import unquote_plus, quote_plus
 from urlparse import parse_qsl
 import json
+import base64
 
 import splunk
 
@@ -30,4 +31,6 @@ class MergeDocument(splunk.rest.BaseRestHandler):
                 for key, values in merge_row.items():
                     document.merge_rows(key, values)
             document.write(self.output)
-        self.response.write("All done")
+
+        with open(self.output, 'rb') as f:
+            self.response.write(base64.b64encode(f.read()))
