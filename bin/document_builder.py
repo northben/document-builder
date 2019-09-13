@@ -23,10 +23,6 @@ class MergeDocument(splunk.rest.BaseRestHandler):
 
         with MailMerge(self.template) as document:
 
-            # print document.get_merge_fields()
-            logger.info("merging document")
-
-            logger.info(payload)
             document.merge(**payload)
 
             for merge_row in json.loads(payload['merge_rows']):
