@@ -1,0 +1,44 @@
+<dashboard script="jquery.tabletojson.min.js,builder.js">
+  <label>document builder test</label>
+  <row>
+    <panel>
+      <html>
+        <form action="/en-US/splunkd/__raw/services/merge_document" method="post" id="the_form">
+          <input type="text" name="cust_name" value="Foo customer"/>
+          <input type="text" name="location" value="Cleveland, OH"/>
+          <input type="submit" value="Merge Document" class="btn btn-primary"/>
+        </form>
+      </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table id="tasks">
+        <title>tasks</title>
+        <search>
+          <query>| makeresults count=3 | streamstats count as dates | eval sow_number="1", task="the task", details="the details", percent_complete="100%"</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table id="issues">
+        <title>issues</title>
+        <search>
+          <query>| makeresults count=3 | streamstats count as issue_status | eval description="desription!", remediation="the remediation", support_case_number="the support case #", etr="the ETR", owner="the owner"</query>
+          <earliest>-24h@h</earliest>
+          <latest>now</latest>
+        </search>
+        <option name="count">10</option>
+        <option name="drilldown">none</option>
+        <option name="refresh.display">progressbar</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>
