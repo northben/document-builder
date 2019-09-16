@@ -1,4 +1,4 @@
-<dashboard script="jquery.tabletojson.min.js,builder.js">
+<dashboard script="document_builder:jquery.tabletojson.min.js,document_builder:builder.js">
   <label>document builder test</label>
   <row>
     <panel>
