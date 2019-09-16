@@ -39,6 +39,7 @@ require([
     var tasks = $('#tasks table').tableToJSON()
     var issues = $('#issues table').tableToJSON()
     var recommendations = $('#recommendations table').tableToJSON()
+    var schedule = $('#schedule table').tableToJSON()
 
     var data = {}
 
@@ -50,6 +51,7 @@ require([
     data["merge_rows"].push({"task_dates": tasks })
     data["merge_rows"].push({"issue_status": issues })
     data["merge_rows"].push({"recommendation_item": recommendations })
+    data["merge_rows"].push({"project_week": schedule })
     data["merge_rows"] = JSON.stringify(data["merge_rows"])
 
     service.post('/services/merge_document', data, function (err, response) {
