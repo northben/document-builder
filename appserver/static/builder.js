@@ -39,7 +39,12 @@ require([
     var tasks = $('#tasks table').tableToJSON()
     var issues = $('#issues table').tableToJSON()
 
-    var data = objectifyForm(document.querySelector('#the_form'))
+    var data = {}
+
+    $(".report").each(function(item, index) {
+      data[this.id] = this.innerHTML
+    })
+
     data["merge_rows"] = []
     data["merge_rows"].push({"task_dates": tasks })
     data["merge_rows"].push({"issue_status": issues })
