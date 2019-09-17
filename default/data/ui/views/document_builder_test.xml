@@ -3,11 +3,12 @@
   <row>
     <panel>
       <html>
-        <form action="/en-US/splunkd/__raw/services/merge_document" method="post" id="the_form">
-          <input type="text" name="cust_name" value="Foo customer"/>
-          <input type="text" name="location" value="Cleveland, OH"/>
+        <form id="the_form">
           <input type="submit" value="Merge Document" class="btn btn-primary"/>
         </form>
+          <div>Customer: <span class="report" id="cust_name">Foo customer</span></div>
+          <div>Location: <span class="report" id="location">Cleveland, OH</span></div>
+          <div>Summary: <span class="report" id="summary">this is a normal summary!</span></div>
       </html>
     </panel>
   </row>
@@ -16,22 +17,7 @@
       <table id="tasks">
         <title>tasks</title>
         <search>
-          <query>| makeresults count=3 | streamstats count as dates | eval sow_number="1", task="the task", details="the details", percent_complete="100%"</query>
-          <earliest>-24h@h</earliest>
-          <latest>now</latest>
-        </search>
-        <option name="count">10</option>
-        <option name="drilldown">none</option>
-        <option name="refresh.display">progressbar</option>
-      </table>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <table id="issues">
-        <title>issues</title>
-        <search>
-          <query>| makeresults count=3 | streamstats count as issue_status | eval description="desription!", remediation="the remediation", support_case_number="the support case #", etr="the ETR", owner="the owner"</query>
+          <query>| makeresults count=1 | streamstats count as task_dates | eval sow_number="1", SOW_label="the task", task_description="the details here", percent_complete="100%"</query>
           <earliest>-24h@h</earliest>
           <latest>now</latest>
         </search>
